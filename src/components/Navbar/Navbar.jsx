@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography } from '@mui/material';
 import Input from '../Input/Input';
 import RM_white_string from '../../assets/RM_white_string.svg'
 import { NavLink } from 'react-router-dom';
@@ -12,6 +12,7 @@ export default function Navbar({ onChange }) {
         onChange(e?.target?.value);
     }
     const debouncedOnChange = debounce(handleChange, 200);
+    
     return (
         <AppBar position='static'>
             <Toolbar>

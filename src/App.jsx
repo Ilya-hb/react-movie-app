@@ -7,24 +7,22 @@ import People from './pages/People/People';
 import Networks from './pages/Networks/Networks';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { debounce } from 'lodash';
-import { MOVIES_PAGE_DATA } from './api';
+import { TVMAZE_API } from './api';
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [pageQty, setPageQty] = useState(0);
   const [query, setQuery] = useState('');
-  // const updateQuery = (e) => setQuery(e?.target?.value);
-  // const debouncedOnChange = debounce(updateQuery, 200);
-
+  // /search/shows?q=:query
+  // /shows?page=:num
   useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const { data: response } = await axios.get(MOVIES_PAGE_DATA);
+        // console.log(query ? TVMAZE_API + `q=${query}` : TVMAZE_API + `page=${page - 1}`);
+        const { data: response } = await axios.get(query ? TVMAZE_API + `search/shows?q=${query}` : TVMAZE_API + `shows?page=${page - 1}`);
         setData(response);
         console.log(response);
       } catch (error) {
@@ -33,18 +31,21 @@ function App() {
       setLoading(false);
     }
     fetchData();
-  }, [setLoading, query]);
+  }, [query, page]);
 
   const handleChange = (query) => {
     setQuery(query);
     // console.log(query); test debounced query (200ms)
+  }
+  const handlePageChange = (page) => {
+    setPage(page);
   }
 
   return (
     <>
       <Navbar onChange={handleChange} />
       <Routes>
-        <Route path='/' element={<Movies data={data} />} />
+        <Route path='/' element={<Movies data={data} page={page} onChange={handlePageChange} />} />
         <Route path='/people' element={<People />} />
         <Route path='/networks' element={<Networks />} />
         <Route path='*' element={<NotFound />} />

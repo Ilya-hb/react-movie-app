@@ -1,1 +1,1 @@
-export const MOVIES_PAGE_DATA = 'https://api.tvmaze.com/shows?'
+export const TVMAZE_API = 'https://api.tvmaze.com/'
