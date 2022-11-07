@@ -14,6 +14,6 @@ export default function Input(props) {
             sx={{
                 m: '0 20px',
             }}
-            />
+        />
     )
 }

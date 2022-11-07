@@ -15,7 +15,7 @@ const theme = createTheme({
     secondary: {
       main: '#CCCCCC'
     }
-    
+
   }
 })
 
@@ -27,7 +27,6 @@ root.render(
         <App />
       </BrowserRouter>
     </ThemeProvider>
-
   </React.StrictMode>
 );
 

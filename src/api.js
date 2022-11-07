@@ -1,0 +1,1 @@
+export const MOVIES_PAGE_DATA = 'https://api.tvmaze.com/shows?'
