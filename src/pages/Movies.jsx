@@ -1,22 +1,14 @@
 import {
     Container,
-    Typography,
     Pagination,
     PaginationItem,
     Stack,
-    Card,
     Grid,
-    CardMedia,
-    CardContent,
-    CardActionArea,
     CircularProgress,
     Box,
-} from '@mui/material'
-import React from 'react'
-import StarIcon from '@mui/icons-material/Star';
-import { NO_IMAGE_URL } from '../../api';
+} from '@mui/material';
+import MovieCard from '../components/MovieCard';
 import { Link } from 'react-router-dom';
-
 
 export default function Movies({ data, page, onChange, onLoading }) {
     // console.log(page)
@@ -68,27 +60,7 @@ export default function Movies({ data, page, onChange, onLoading }) {
                         sx={{ mt: '0' }}
                     >
                         {data.map((el) => {
-                            return <Grid item xs={3} key={el?.id || el?.show?.id}>
-                                <Link to={`/movie/${el?.id || el?.show?.id}`} className='pagination-link'>
-                                    <Card>
-                                        <CardActionArea>
-                                            <CardMedia
-                                                component='img'
-                                                image={el.show?.image?.medium || el?.image?.medium || NO_IMAGE_URL}
-                                                alt={el.show?.name}
-                                            />
-                                            <CardContent>
-                                                <Typography noWrap gutterBottom variant='h5' component='p'>{el?.name || el?.show?.name}</Typography>
-                                                <Typography variant='h5' component='span'>
-                                                    <StarIcon
-                                                        sx={{ color: '#4EAEC8', fontSize: '25px', mx: '3px', }} />
-                                                    {el.show?.rating?.average || el?.rating?.average}
-                                                </Typography>
-                                            </CardContent>
-                                        </CardActionArea>
-                                    </Card>
-                                </Link>
-                            </Grid>
+                            return <MovieCard el={el} key={el?.id || el?.show?.id} />
                         })}
                     </Grid>
                 </Stack>)

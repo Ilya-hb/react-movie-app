@@ -1,7 +1,7 @@
 import React from 'react'
-import { AppBar, Toolbar, Box, CircularProgress } from '@mui/material';
-import Input from '../Input/Input';
-import RM_white_string from '../../assets/RM_white_string.svg'
+import { AppBar, Toolbar } from '@mui/material';
+import Input from './Input';
+import RM_white_string from '../assets/RM_white_string.svg'
 import { NavLink } from 'react-router-dom';
 import { debounce } from 'lodash';
 const setActive = ({ isActive }) => isActive ? 'active-link' : '';
@@ -24,9 +24,6 @@ export default function Navbar({ onChange }) {
                 <NavLink to='/people' className={setActive}>People</NavLink>
                 <NavLink to='/networks' className={setActive}>Networks</NavLink>
             </Toolbar>
-
-
-
         </AppBar>
 
     )

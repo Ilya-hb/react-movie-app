@@ -1,11 +1,11 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Movies from './pages/Movies/Movies';
-import NotFound from './pages/NotFound/NotFound';
-import Navbar from './components/Navbar/Navbar';
-import People from './pages/People/People';
-import Networks from './pages/Networks/Networks';
-import Movie from './pages/Movie/Movie'
+import Movies from './pages/Movies';
+import NotFound from './pages/NotFound';
+import Navbar from './components/Navbar';
+import People from './pages/People';
+import Networks from './pages/Networks';
+import Movie from './pages/Movie'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TVMAZE_API } from './api';
@@ -15,9 +15,7 @@ function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
-  const [pageQty, setPageQty] = useState(0);
   const [query, setQuery] = useState('');
-
   // /search/shows?q=:query
   // /shows?page=:num
   useEffect(() => {
@@ -37,7 +35,6 @@ function App() {
 
   const handleChange = (query) => {
     setQuery(query);
-    // console.log(query); test debounced query (200ms)
   }
   const handlePageChange = (page) => {
     setPage(page);

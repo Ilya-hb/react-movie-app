@@ -3,14 +3,6 @@
 
 }
 
-/* body {
-  background-image: url(./assets/RM_background_04.png);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
-} */
-
-
 .pagination-link {
   text-decoration: none;
 }
@@ -29,13 +21,17 @@ a {
 a:hover {
   color: #4EAEC8;
   text-decoration: underline;
+
 }
 
 .paginate button {
   color: black;
-
 }
 
 .paginate div {
   color: black;
+}
+
+.active-breadcrump, .disabled-breacrump {
+  color: black !important;
 }
