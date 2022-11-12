@@ -7,7 +7,8 @@ import { CircularProgress, Typography, Grid, Tab } from '@mui/material';
 import { TabPanel, TabContext, TabList } from '@mui/lab';
 import MovieTable from '../components/MovieTable';
 import MovieGallery from '../components/MovieGallery';
-import BreadCrumb from '../components/BreadCrumb';
+// import BreadCrumb from '../components/BreadCrumb';
+import Cast from '../components/Cast';
 
 export default function Movie() {
     // console.log(movieData);
@@ -94,7 +95,7 @@ export default function Movie() {
                                 </TabList>
                                 <TabPanel value="Episodes"><MovieTable episodes={episodes} /></TabPanel>
                                 <TabPanel value="Gallery"><MovieGallery id={movieData.id} /></TabPanel>
-                                <TabPanel value="Cast">Cast</TabPanel>
+                                <TabPanel value="Cast"><Cast id={movieData.id} /></TabPanel>
                             </TabContext>
                         </Box>
                     </Grid>

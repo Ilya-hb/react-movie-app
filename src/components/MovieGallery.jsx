@@ -12,7 +12,7 @@ export default function MovieGallery({ id }) {
             try {
                 const { data: response } = await axios.get(TVMAZE_API + `shows/${id}/images`);
                 setMovieImages(response);
-                console.log(response);
+                // console.log(response);
             } catch (error) {
                 console.log(error.message);
             } setLoading(false);
