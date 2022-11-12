@@ -11,6 +11,14 @@
 } */
 
 
+.pagination-link {
+  text-decoration: none;
+}
+
+.pagination-link:hover {
+  text-decoration: none;
+}
+
 a {
   color: white;
   text-decoration: none;

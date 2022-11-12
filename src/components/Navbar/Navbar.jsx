@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Box, CircularProgress } from '@mui/material';
 import Input from '../Input/Input';
 import RM_white_string from '../../assets/RM_white_string.svg'
 import { NavLink } from 'react-router-dom';
@@ -11,8 +11,9 @@ export default function Navbar({ onChange }) {
     const handleChange = (e) => {
         onChange(e?.target?.value);
     }
+
     const debouncedOnChange = debounce(handleChange, 200);
-    
+
     return (
         <AppBar position='static'>
             <Toolbar>
@@ -23,6 +24,9 @@ export default function Navbar({ onChange }) {
                 <NavLink to='/people' className={setActive}>People</NavLink>
                 <NavLink to='/networks' className={setActive}>Networks</NavLink>
             </Toolbar>
+
+
+
         </AppBar>
 
     )
