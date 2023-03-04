@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { NO_IMAGE_URL, TVMAZE_API } from "../api";
-import { Card, CardContent, Typography, CardMedia, Grid } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Typography,
+  CardMedia,
+  Grid,
+  CardActionArea,
+} from "@mui/material";
+import { Link } from "react-router-dom";
 
 export default function Cast({ id }) {
   const [loading, setLoading] = useState(false);
@@ -38,15 +46,21 @@ export default function Cast({ id }) {
       {castData.map((el) => {
         return (
           <Grid item xs={3} id={el.character.id} key={el.character.id}>
-            <Card>
-              <CardMedia
-                component="img"
-                image={el.character?.image?.medium || NO_IMAGE_URL}
-              />
-              <CardContent>
-                <Typography>{el.character.name}</Typography>
-              </CardContent>
-            </Card>
+            <Link to={`/actor/${el.person.id}`} className="pagination-link">
+              <Card>
+                <CardActionArea>
+                  <CardMedia
+                    component="img"
+                    image={el.character?.image?.medium || NO_IMAGE_URL}
+                  />
+                  <CardContent>
+                    <Typography>{el.person.name}</Typography>
+                    <Typography>{"As"}</Typography>
+                    <Typography>{el.character.name}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Link>
           </Grid>
         );
       })}
