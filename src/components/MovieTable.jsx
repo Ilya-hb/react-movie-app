@@ -14,7 +14,7 @@ import {
 import StarIcon from "@mui/icons-material/Star";
 
 export default function MovieTable({ episodes }) {
-  // console.log(episodes)
+  
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,

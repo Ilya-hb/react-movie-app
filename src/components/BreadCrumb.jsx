@@ -1,8 +1,6 @@
 import React from "react";
 import { Breadcrumbs } from "@mui/material";
 import { Link as NavLink } from "react-router-dom";
-const setActive = ({ isActive }) =>
-  isActive ? "active-breadcrumb" : "disabled-breadcrump";
 
 export default function BreadCrumb() {
   const handleClick = (e) => {

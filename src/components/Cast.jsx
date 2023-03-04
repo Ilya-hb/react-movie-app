@@ -12,12 +12,10 @@ import {
 import { Link } from "react-router-dom";
 
 export default function Cast({ id }) {
-  const [loading, setLoading] = useState(false);
   const [castData, setCastData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const { data: response } = await axios.get(
           TVMAZE_API + `shows/${id}/cast`
@@ -28,7 +26,6 @@ export default function Cast({ id }) {
       } catch (error) {
         console.log(error.message);
       }
-      setLoading(false);
     };
     fetchData();
   }, [id]);

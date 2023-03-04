@@ -9,7 +9,6 @@ import {
   Box,
   CircularProgress,
 } from "@mui/material";
-import { TabPanel, TabContext, TabList } from "@mui/lab";
 import { NO_IMAGE_URL } from "../api";
 
 export default function Actor() {

@@ -3,12 +3,10 @@ import axios from "axios";
 import { TVMAZE_API } from "../api";
 import { ImageList, ImageListItem, Box } from "@mui/material";
 export default function MovieGallery({ id }) {
-  const [loading, setLoading] = useState(false);
   const [movieImages, setMovieImages] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
-      setLoading(true);
       try {
         const { data: response } = await axios.get(
           TVMAZE_API + `shows/${id}/images`
@@ -18,7 +16,6 @@ export default function MovieGallery({ id }) {
       } catch (error) {
         console.log(error.message);
       }
-      setLoading(false);
     };
     fetchData();
   }, [id]);
