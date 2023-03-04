@@ -10,7 +10,6 @@ export default function Navbar({ onChange, peoplePage }) {
   const handleChange = (e) => {
     onChange(e?.target?.value);
   };
-  console.log(peoplePage);
   const debouncedOnChange = debounce(handleChange, 400);
 
   return (

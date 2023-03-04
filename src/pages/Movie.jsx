@@ -17,7 +17,7 @@ export default function Movie() {
   const [loading, setLoading] = useState(true);
   const [value, setValue] = useState("Gallery");
   const params = useParams();
-  console.log(params);
+  // console.log(params);
   const handleChange = (_, newValue) => {
     setValue(newValue);
   };

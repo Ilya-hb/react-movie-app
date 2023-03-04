@@ -37,7 +37,7 @@ export default function Cast({ id }) {
     >
       {castData.map((el) => {
         return (
-          <Grid item xs={3} id={el.character.id}>
+          <Grid item xs={3} id={el.character.id} key={el.character.id}>
             <Card>
               <CardMedia
                 component="img"

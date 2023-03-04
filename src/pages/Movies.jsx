@@ -11,10 +11,7 @@ import MovieCard from "../components/MovieCard";
 import { Link } from "react-router-dom";
 
 export default function Movies({ data, page, onChange, onLoading }) {
-  // console.log(page)
-  // console.log(data);
-  // console.log(onLoading);
-  console.log(data);
+  
   const handlePageChange = (num) => {
     onChange(num);
   };

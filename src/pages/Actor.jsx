@@ -15,8 +15,6 @@ import { NO_IMAGE_URL } from "../api";
 export default function Actor() {
   const [actor, setActor] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [value, setValue] = useState("Main");
-  const [castcredits, setCastcredits] = useState([]);
   const params = useParams();
 
   useEffect(() => {

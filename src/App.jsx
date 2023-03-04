@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { TVMAZE_API } from "./api";
 import Actor from "./pages/Actor";
+import { useLocation } from "react-router-dom";
 
 function App() {
   const [data, setData] = useState([]);
@@ -18,6 +19,8 @@ function App() {
   const [peoplePage, setPeoplePage] = useState(1);
   const [query, setQuery] = useState("");
   const [peopleData, setPeopleData] = useState([]);
+  const { pathname } = useLocation();
+  const hasPeople = pathname.includes("/people");
 
   useEffect(() => {
     //For receiving movies data
@@ -25,7 +28,7 @@ function App() {
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(
-          query
+          query && !hasPeople
             ? TVMAZE_API + `search/shows?q=${query}`
             : TVMAZE_API + `shows?page=${page - 1}`
         );
@@ -41,21 +44,21 @@ function App() {
 
   useEffect(() => {
     //for receiving people data
-    // setLoading(true);
     const fetchData = async () => {
       try {
         const { data: response } = await axios.get(
-          TVMAZE_API + `people?page=${peoplePage - 1}`
+          query && hasPeople
+            ? TVMAZE_API + `search/people?q=${query}`
+            : TVMAZE_API + `people?page=${peoplePage - 1}`
         );
+        // console.log(response);
         setPeopleData(response.slice(0, 20));
-        console.log(response.slice(0,20));
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
-    // setLoading(false);
-  }, [peoplePage]);
+  }, [query, peoplePage]);
 
   const handleChange = (query) => {
     setQuery(query);
@@ -68,7 +71,7 @@ function App() {
   };
   return (
     <>
-      <Navbar onChange={handleChange} peoplePage={peoplePage}/>
+      <Navbar onChange={handleChange} peoplePage={peoplePage} />
       <Routes>
         <Route
           path="/"
