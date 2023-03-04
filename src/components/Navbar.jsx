@@ -6,11 +6,11 @@ import { NavLink } from "react-router-dom";
 import { debounce } from "lodash";
 const setActive = ({ isActive }) => (isActive ? "active-link" : "");
 
-export default function Navbar({ onChange }) {
+export default function Navbar({ onChange, peoplePage }) {
   const handleChange = (e) => {
     onChange(e?.target?.value);
   };
-
+  console.log(peoplePage);
   const debouncedOnChange = debounce(handleChange, 400);
 
   return (
@@ -25,12 +25,16 @@ export default function Navbar({ onChange }) {
           />
         </NavLink>
         <Input onChange={debouncedOnChange} />
-        <NavLink to="/people" className={setActive}>
+        <NavLink to="/" className={setActive}>
+          Shows
+        </NavLink>
+        <NavLink to={`/people?page=${peoplePage}`} className={setActive}>
           People
         </NavLink>
         <NavLink to="/networks" className={setActive}>
           Networks
         </NavLink>
+        
       </Toolbar>
     </AppBar>
   );

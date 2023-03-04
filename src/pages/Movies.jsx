@@ -14,6 +14,7 @@ export default function Movies({ data, page, onChange, onLoading }) {
   // console.log(page)
   // console.log(data);
   // console.log(onLoading);
+  console.log(data);
   const handlePageChange = (num) => {
     onChange(num);
   };
@@ -21,11 +22,11 @@ export default function Movies({ data, page, onChange, onLoading }) {
   return (
     <Container maxWidth="lg" sx={{ mt: "10px" }}>
       {onLoading ? (
-        <Box sx={{ display: "flex", justifyContent: "center", mt:'20px' }}>
+        <Box sx={{ display: "flex", justifyContent: "center", mt: "20px" }}>
           <CircularProgress />
         </Box>
       ) : (
-        <Stack spacing={2}>
+        <Stack>
           {data.length !== 10 && (
             <Pagination
               size="large"

@@ -9,11 +9,13 @@ import Movie from "./pages/Movie";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { TVMAZE_API } from "./api";
+import Actor from "./pages/Actor";
 
 function App() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
+  const [peoplePage, setPeoplePage] = useState(1);
   const [query, setQuery] = useState("");
   const [peopleData, setPeopleData] = useState([]);
 
@@ -27,7 +29,7 @@ function App() {
             ? TVMAZE_API + `search/shows?q=${query}`
             : TVMAZE_API + `shows?page=${page - 1}`
         );
-        setData(response);
+        setData(response.slice(0, 20));
         // console.log(response);
       } catch (error) {
         console.log(error.message);
@@ -42,27 +44,31 @@ function App() {
     // setLoading(true);
     const fetchData = async () => {
       try {
-        const { data: response } = await axios.get(TVMAZE_API + `people?page=0&perpage=25`);
-        setPeopleData(response);
-        console.log(response);
+        const { data: response } = await axios.get(
+          TVMAZE_API + `people?page=${peoplePage - 1}`
+        );
+        setPeopleData(response.slice(0, 20));
+        console.log(response.slice(0,20));
       } catch (error) {
         console.log(error.message);
       }
     };
     fetchData();
     // setLoading(false);
-  }, []);
+  }, [peoplePage]);
 
   const handleChange = (query) => {
     setQuery(query);
   };
-  const handlePageChange = (page) => {
-    setPage(page);
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
   };
-
+  const handlePeoplePageChange = (newPage) => {
+    setPeoplePage(newPage);
+  };
   return (
     <>
-      <Navbar onChange={handleChange} />
+      <Navbar onChange={handleChange} peoplePage={peoplePage}/>
       <Routes>
         <Route
           path="/"
@@ -76,11 +82,19 @@ function App() {
           }
         />
         <Route
-          path="/people"
-          element={<People data={peopleData} onLoading={loading} />}
+          path={`/people`}
+          element={
+            <People
+              data={peopleData}
+              page={peoplePage}
+              onChange={handlePeoplePageChange}
+              onLoading={loading}
+            />
+          }
         />
         <Route path="/networks" element={<Networks />} />
         <Route path="/movie/:id" element={<Movie />} />
+        <Route path="/actor/:id" element={<Actor />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

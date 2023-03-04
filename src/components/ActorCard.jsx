@@ -13,19 +13,23 @@ export default function ActorCard({ el }) {
   // console.log(el);
   return (
     <Grid item xs={3}>
-      <Card>
-        <CardActionArea>
-          <CardMedia 
-          component='img'
-          image={el.image?.medium || NO_IMAGE_URL}
-          />
-          <CardContent>
-            <Typography noWrap gutterBottom variant='h5' component='p'>
-              {el.name}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-      </Card>
+      <Link to={`/actor/${el.id}`} className="pagination-link">
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              loading="lazy"
+              alt={el.name}
+              image={el.image?.medium || NO_IMAGE_URL}
+            />
+            <CardContent>
+              <Typography noWrap gutterBottom variant="h5" component="p">
+                {el.name}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </Link>
     </Grid>
   );
 }
