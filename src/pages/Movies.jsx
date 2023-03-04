@@ -24,7 +24,7 @@ export default function Movies({ data, page, onChange, onLoading }) {
         </Box>
       ) : (
         <Stack>
-          {data.length !== 10 && (
+          {data.length > 10 && (
             <Pagination
               size="large"
               sx={{ display: "flex", justifyContent: "center", mt: "10px" }}
